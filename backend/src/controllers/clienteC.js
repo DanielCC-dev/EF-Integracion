@@ -21,21 +21,28 @@ const getClientes = async (req, res) => {
 
 const addCliente = async (req, res) => {
     try {
-        const { nombre, email, telefono, dni } = req.body;
-        const nuevoCliente = await Cliente.create({ nombre, email, telefono, dni });
-        res.status(201).send(nuevoCliente);
+      const { nombre, correo, telefono, dni } = req.body;
+
+      const nuevoCliente = await Cliente.create({
+        nombre,
+        correo,
+        telefono,
+        dni,
+      });
+  
+      res.status(201).send(nuevoCliente);
     } catch (error) {
-        res.status(500).send(error.message);
+      res.status(500).send(error.message);
     }
-};
+  };
 
 const updateCliente = async (req, res) => {
     try {
         const { id } = req.params;
-        const { nombre, email, telefono, dni } = req.body;
+        const { nombre, correo, telefono, dni } = req.body;
         const clienteActualizado = await Cliente.findByIdAndUpdate(
             id,
-            { nombre, email, telefono, dni },
+            { nombre, correo, telefono, dni },
             { new: true, runValidators: true }
         );
         res.status(200).send(clienteActualizado);

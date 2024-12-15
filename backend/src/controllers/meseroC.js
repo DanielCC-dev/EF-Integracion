@@ -8,7 +8,7 @@ const addMesero = async (req, res) => {
   try {
     const { nombre, correo, telefono, contraseña } = req.body;
 
-    const hashedPassword = await bcrypt.hash(contraseña, 10);
+    const hashedPassword = await bcrypt.hash(contraseña, 12);
 
     const nuevoMesero = await Mesero.create({
       nombre,
@@ -52,7 +52,7 @@ const updateMesero = async (req, res) => {
     let updateData = { nombre, correo, telefono };
 
     if (contraseña) {
-      updateData.contraseña = jwt.sign({ contraseña }, 'jwt');
+      updateData.contraseña = await bcrypt.hash(contraseña, 12);
     }
 
     const meseroActualizado = await Mesero.findByIdAndUpdate(
@@ -90,14 +90,14 @@ const login = async (req, res) => {
 
     console.log('Contraseña ingresada:', contraseña);
     console.log('Contraseña almacenada:', user.contraseña);
-    
+
     if (!validPassword) {
-        return res.status(401).json({ auth: false, token: null });
+      return res.status(401).json({ auth: false, token: null });
     }
-    
+
 
     const token = jwt.sign({ id: user._id }, config.secret, {
-        expiresIn: 60 * 60 * 24
+      expiresIn: 60 * 60 * 24
     })
 
     res.json({ auth: true, token });

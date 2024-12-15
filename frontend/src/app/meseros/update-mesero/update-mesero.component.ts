@@ -7,11 +7,10 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { FooterComponent } from '../../pages/footer/footer.component';
 
 @Component({
-  selector: 'app-update-mesero',
-  standalone: true,
-  imports: [NavbarComponent, ReactiveFormsModule, FooterComponent],
-  templateUrl: './update-mesero.component.html',
-  styleUrl: './update-mesero.component.css'
+    selector: 'app-update-mesero',
+    imports: [NavbarComponent, ReactiveFormsModule, FooterComponent],
+    templateUrl: './update-mesero.component.html',
+    styleUrl: './update-mesero.component.css'
 })
 export class UpdateMeseroComponent implements OnInit {
   mesero: Meseros | undefined;

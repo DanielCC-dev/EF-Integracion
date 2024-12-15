@@ -8,11 +8,10 @@ import { FooterComponent } from '../../pages/footer/footer.component';
 
 
 @Component({
-  selector: 'app-listar-meseros',
-  standalone: true,
-  imports: [NavbarComponent, NgFor, NgClass, RouterLink, FooterComponent],
-  templateUrl: './listar-meseros.component.html',
-  styleUrl: './listar-meseros.component.css'
+    selector: 'app-listar-meseros',
+    imports: [NavbarComponent, NgFor, NgClass, RouterLink, FooterComponent],
+    templateUrl: './listar-meseros.component.html',
+    styleUrl: './listar-meseros.component.css'
 })
 export class ListarMeserosComponent implements OnInit {
   meseros: Meseros[] = [];  // Array para almacenar los meseros

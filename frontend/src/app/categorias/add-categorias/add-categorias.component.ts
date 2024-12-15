@@ -9,11 +9,10 @@ import { Categoria } from '../../models/categoria';
 
 
 @Component({
-  selector: 'app-add-categorias',
-  standalone: true,
-  imports: [NgIf, ReactiveFormsModule, NavbarComponent, FooterComponent],
-  templateUrl: './add-categorias.component.html',
-  styleUrl: './add-categorias.component.css'
+    selector: 'app-add-categorias',
+    imports: [NgIf, ReactiveFormsModule, NavbarComponent, FooterComponent],
+    templateUrl: './add-categorias.component.html',
+    styleUrl: './add-categorias.component.css'
 })
 export class AddCategoriasComponent {
   addCategoriaForm: FormGroup;

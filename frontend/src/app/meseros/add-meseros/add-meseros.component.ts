@@ -8,11 +8,10 @@ import { NavbarComponent } from '../../pages/navbar/navbar.component';
 import { FooterComponent } from '../../pages/footer/footer.component';
 
 @Component({
-  selector: 'app-add-meseros',
-  standalone: true,
-  imports: [NgIf, ReactiveFormsModule, NavbarComponent, FooterComponent],
-  templateUrl: './add-meseros.component.html',
-  styleUrl: './add-meseros.component.css'
+    selector: 'app-add-meseros',
+    imports: [NgIf, ReactiveFormsModule, NavbarComponent, FooterComponent],
+    templateUrl: './add-meseros.component.html',
+    styleUrl: './add-meseros.component.css'
 })
 export class AddMeserosComponent {
   addMeseroForm: FormGroup;

@@ -7,11 +7,10 @@ import { Categoria } from '../../models/categoria';
 import { CategoriaService } from '../../services/categoria.service';
 
 @Component({
-  selector: 'app-listar-categorias',
-  standalone: true,
-  imports: [FooterComponent, NavbarComponent, NgFor, RouterLink],
-  templateUrl: './listar-categorias.component.html',
-  styleUrl: './listar-categorias.component.css'
+    selector: 'app-listar-categorias',
+    imports: [FooterComponent, NavbarComponent, NgFor, RouterLink],
+    templateUrl: './listar-categorias.component.html',
+    styleUrl: './listar-categorias.component.css'
 })
 export class ListarCategoriasComponent {
   categoria: Categoria[] = [];

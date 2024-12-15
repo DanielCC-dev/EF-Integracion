@@ -11,18 +11,19 @@ import { ListarCategoriasComponent } from './categorias/listar-categorias/listar
 import { AddCategoriasComponent } from './categorias/add-categorias/add-categorias.component';
 import { UpdateCategoriaComponent } from './categorias/update-categoria/update-categoria.component';
 import { ErrorComponent } from './pages/error/error.component';
+import { userGuardGuard } from './services/user-guard.guard';
 
 export const routes: Routes = [
     {path: '', component: LoginComponent},
     {path: 'home', component: HomeComponent},
-    {path: 'meseros', component: ListarMeserosComponent},
-    {path: 'addMesero', component: AddMeserosComponent},
-    {path: 'updateMesero/:id', component: UpdateMeseroComponent},
-    {path: 'clientes', component: ListarClientesComponent},
-    {path: 'addCliente', component: AddClientesComponent},
-    {path: 'updateCliente/:id', component: UpdateClienteComponent},
-    {path: 'categorias', component: ListarCategoriasComponent},
-    {path: 'addCategoria', component: AddCategoriasComponent},
-    {path: 'updateCategoria/:id', component: UpdateCategoriaComponent},
+    {path: 'meseros', component: ListarMeserosComponent, canActivate: [userGuardGuard]},
+    {path: 'addMesero', component: AddMeserosComponent, canActivate: [userGuardGuard]},
+    {path: 'updateMesero/:id', component: UpdateMeseroComponent, canActivate: [userGuardGuard]},
+    {path: 'clientes', component: ListarClientesComponent, canActivate: [userGuardGuard]},
+    {path: 'addCliente', component: AddClientesComponent, canActivate: [userGuardGuard]},
+    {path: 'updateCliente/:id', component: UpdateClienteComponent, canActivate: [userGuardGuard]},
+    {path: 'categorias', component: ListarCategoriasComponent, canActivate: [userGuardGuard]},
+    {path: 'addCategoria', component: AddCategoriasComponent, canActivate: [userGuardGuard]},
+    {path: 'updateCategoria/:id', component: UpdateCategoriaComponent, canActivate: [userGuardGuard]},
     {path:'**', component: ErrorComponent}
 ];

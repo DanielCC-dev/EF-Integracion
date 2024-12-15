@@ -4,19 +4,19 @@ import { Router } from '@angular/router';
 import { NgIf } from '@angular/common';
 import { Login } from '../../models/login';
 import { MeseroService } from '../../services/mesero.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
-  selector: 'app-login',
-  standalone: true,
-  imports: [NgIf, ReactiveFormsModule],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+    selector: 'app-login',
+    imports: [NgIf, ReactiveFormsModule],
+    templateUrl: './login.component.html',
+    styleUrl: './login.component.css'
 })
 export class LoginComponent {
   loginForm: FormGroup;
   errorMessage: string = '';
 
-  constructor(private fb: FormBuilder, private router: Router, private datalogin: MeseroService){
+  constructor(private fb: FormBuilder, private router: Router, private datalogin: MeseroService, private cookieService: CookieService){
     this.loginForm = this.fb.group({
       correo: ['', Validators.required],
       contraseña: ['', Validators.required],
@@ -29,10 +29,16 @@ export class LoginComponent {
       contraseña: this.loginForm.get('contraseña')?.value,
     }
 
-    // Llamamos al servicio para hacer el POST a la API
     this.datalogin.login(USER).subscribe({
       next: (response) => {
-        // Si la respuesta es exitosa, redirigimos a la página de inicio
+        const token = response.token;
+
+        // Guarda el token en una cookie
+        this.cookieService.set('jwt_token', token, {
+          path: '/',        
+          secure: true,     
+          sameSite: 'Strict' 
+        });
         this.router.navigate(['/home']);
       },
       error: (error) => {

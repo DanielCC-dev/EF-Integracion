@@ -6,11 +6,10 @@ import { FooterComponent } from '../../pages/footer/footer.component';
 import { Categoria } from '../../models/categoria';
 import { CategoriaService } from '../../services/categoria.service';
 @Component({
-  selector: 'app-update-categoria',
-  standalone: true,
-  imports: [NavbarComponent, ReactiveFormsModule, FooterComponent],
-  templateUrl: './update-categoria.component.html',
-  styleUrl: './update-categoria.component.css'
+    selector: 'app-update-categoria',
+    imports: [NavbarComponent, ReactiveFormsModule, FooterComponent],
+    templateUrl: './update-categoria.component.html',
+    styleUrl: './update-categoria.component.css'
 })
 export class UpdateCategoriaComponent implements OnInit {
   categoria: Categoria | undefined;

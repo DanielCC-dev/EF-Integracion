@@ -15,7 +15,7 @@ import { userGuardGuard } from './services/user-guard.guard';
 
 export const routes: Routes = [
     {path: '', component: LoginComponent},
-    {path: 'home', component: HomeComponent},
+    {path: 'home', component: HomeComponent, canActivate: [userGuardGuard]},
     {path: 'meseros', component: ListarMeserosComponent, canActivate: [userGuardGuard]},
     {path: 'addMesero', component: AddMeserosComponent, canActivate: [userGuardGuard]},
     {path: 'updateMesero/:id', component: UpdateMeseroComponent, canActivate: [userGuardGuard]},

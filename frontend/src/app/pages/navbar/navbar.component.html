@@ -14,6 +14,9 @@
         <a class="nav-link" [class.active]="isActive('/categorias') || isActive('/addCategoria') || isActive('/updateCategoria')"
           href="/categorias">Categorías</a>
       </div>
+      <div class="d-flex justify-content-end">
+        <button (click)="logout()">Cerrar sesión</button>
+      </div>
     </div>
   </div>
 </nav>

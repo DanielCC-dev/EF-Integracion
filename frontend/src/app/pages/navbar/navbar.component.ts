@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
     selector: 'app-navbar',
@@ -8,7 +9,14 @@ import { Router, RouterOutlet } from '@angular/router';
     styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private cookieService: CookieService) {}
+
+  logout() {
+    this.cookieService.delete('jwt_token');
+    
+    this.router.navigate(['/']);
+  }
+
   isActive(route: string): boolean {
     if (route === '/updateMesero' && this.router.url.includes('/updateMesero')) {
       return true;

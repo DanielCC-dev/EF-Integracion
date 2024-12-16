@@ -1,24 +1,19 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
-import { delay } from 'rxjs';
 
 export const jwtInterceptorInterceptor: HttpInterceptorFn = (req, next) => {
   const cookieService = inject(CookieService);
-
   const token = cookieService.get('jwt_token');
 
-  return next(req).pipe(
-    delay(100),  
-    (event) => {
-      const authReq = token
-        ? req.clone({
-            setHeaders: {
-              Authorization: `Bearer ${token}`,
-            },
-          })
-        : req;
-      return next(authReq);
-    }
-  );
+  if (token) {
+    const authReq = req.clone({
+      setHeaders: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return next(authReq); 
+  }
+
+  return next(req);
 };

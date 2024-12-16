@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavbarComponent } from '../../pages/navbar/navbar.component';
 import { Clientes } from '../../models/clientes';
 import { ClienteService } from '../../services/cliente.service';
-import { NgClass, NgFor } from '@angular/common';
+import { NgFor } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { FooterComponent } from '../../pages/footer/footer.component';
 
@@ -10,7 +10,7 @@ import { FooterComponent } from '../../pages/footer/footer.component';
 @Component({
   selector: 'app-listar-clientes',
   standalone: true,
-  imports: [NavbarComponent, NgFor, NgClass, RouterLink, FooterComponent],
+  imports: [NavbarComponent, NgFor, RouterLink, FooterComponent],
   templateUrl: './listar-clientes.component.html',
   styleUrl: './listar-clientes.component.css'
 })

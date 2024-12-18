@@ -15,8 +15,8 @@ const app = express();
 connectDB();
 
 app.use(express.static(__dirname));
-app.use(bodyParser.urlencoded({ extended: false}));
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '10mb' })); 
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 
 // Middleware para parsear JSON
 app.use(morgan("dev"))

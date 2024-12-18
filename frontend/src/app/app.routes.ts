@@ -15,6 +15,8 @@ import { AddCategoriasComponent } from './categorias/add-categorias/add-categori
 import { UpdateCategoriaComponent } from './categorias/update-categoria/update-categoria.component';
 import { ErrorComponent } from './pages/error/error.component';
 import { userGuardGuard } from './services/user-guard.guard';
+import { GestionOrdenesComponent } from './ordenes/gestion-ordenes/gestion-ordenes.component';
+import { AddOrdenComponent } from './ordenes/add-orden/add-orden.component';
 
 export const routes: Routes = [
     {path: '', component: LoginComponent},
@@ -31,5 +33,7 @@ export const routes: Routes = [
     {path: 'categorias', component: ListarCategoriasComponent, canActivate: [userGuardGuard]},
     {path: 'addCategoria', component: AddCategoriasComponent, canActivate: [userGuardGuard]},
     {path: 'updateCategoria/:id', component: UpdateCategoriaComponent, canActivate: [userGuardGuard]},
+    {path: 'ordenes', component: GestionOrdenesComponent, canActivate: [userGuardGuard]},
+    {path: 'addOrden', component: AddOrdenComponent, canActivate: [userGuardGuard]},
     {path:'**', component: ErrorComponent}
 ];

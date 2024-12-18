@@ -5,6 +5,7 @@ import { PlatoService } from '../../services/plato.service';
 import { NgFor, NgIf, CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { FooterComponent } from '../../pages/footer/footer.component';
+import { OrdenService } from '../../services/orden.service';
 
 
 @Component({
@@ -15,13 +16,13 @@ import { FooterComponent } from '../../pages/footer/footer.component';
   styleUrl: './listar-platos.component.css'
 })
 export class ListarPlatosComponent implements OnInit {
-  platos: Platos[] = [];  // Array para almacenar los platos
+  platos: Platos[] = [];
 
-  constructor(private platoService: PlatoService, private router: Router) { }
+  constructor(private platoService: PlatoService, private router: Router, private ordenService: OrdenService) { }
 
   ngOnInit(): void {
-    this.cargarPlatos();  // Cargar la lista de meseros al iniciar el componente
-  }
+    this.cargarPlatos();     
+  } 
 
   cargarPlatos() {
     this.platoService.getPlatos().subscribe({

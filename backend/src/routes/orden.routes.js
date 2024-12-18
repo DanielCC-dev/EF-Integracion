@@ -4,8 +4,8 @@ const { getOrden, addOrden, updateOrden, deleteOrden } = require('../controllers
 const router = express.Router();
 
 router.get("/api/orden/:id", getOrden);
-router.post("/api/addOrden", addOrden);
-router.put("/api/updateOrden/:id", updateOrden);
-router.delete("/api/deleteOrden/:id", deleteOrden);
+router.post("/api/orden", addOrden);
+router.put("/api/orden/:id", updateOrden);
+router.delete("/api/orden/:id", deleteOrden);
 
 module.exports = router;

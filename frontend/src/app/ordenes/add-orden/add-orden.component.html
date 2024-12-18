@@ -1,0 +1,54 @@
+<app-navbar />
+<div id="content">
+    <section class="container mt-5">
+        <div class="d-flex flex-column align-items-center">
+            <h1 class="fw-bold text-light mb-4">Gestión de Órdenes</h1>
+            <div class="col-12">
+                <h3 class="fw-semibold mb-3">Agregar Órden</h3>
+            </div>
+            <div class="col-12 col-md-10">
+                <div class="card-body text-light">
+                    <form [formGroup]="addOrdenForm" (ngSubmit)="addOrden()">
+                        <div>
+                            <label for="idMesa">Mesa</label>
+                            <select id="idMesa" formControlName="idMesa" required>
+                                <option *ngFor="let mesa of mesasDisponibles" [value]="mesa.id">{{
+                                    mesa.nombre }} - Para {{mesa.capacidad}} personas</option>
+                            </select>
+                        </div>
+
+                        <div formArrayName="platillos">
+                            <div *ngFor="let platillo of platillos.controls; let i = index" [formGroupName]="i">
+                                <label for="idPlatillo-{{ i }}">Platillo</label>
+                                <select id="idPlatillo-{{ i }}" formControlName="idPlatillo" required>
+                                    <option *ngFor="let plato of platillosDisponibles" [value]="plato._id">{{
+                                        plato.nombre }}</option>
+                                </select>
+
+
+                                <label for="cantidad-{{ i }}">Cantidad</label>
+                                <input id="cantidad-{{ i }}" formControlName="cantidad" type="number" min="1">
+                                <button type="button" (click)="removePlatillo(i)">Eliminar</button>
+                            </div>
+                        </div>
+
+                        <button type="button" (click)="addPlatillo()">Añadir Platillo</button>
+
+                        <div>
+                            <label for="estado">Estado</label>
+                            <select id="estado" formControlName="estado">
+                                <option value="pendiente">Pendiente</option>
+                                <option value="entregado">Entregado</option>
+                                <option value="cancelado">Cancelado</option>
+                            </select>
+                        </div>
+
+                        <button type="submit">Guardar Orden</button>
+                        <div *ngIf="errorMessage">{{ errorMessage }}</div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<app-footer />

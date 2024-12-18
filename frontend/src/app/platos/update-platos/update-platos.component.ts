@@ -24,7 +24,7 @@ export class UpdatePlatoComponent implements OnInit {
       nombre: ['', Validators.required],
       ingredientes: ['', Validators.required],
       precio: ['', Validators.required],
-      imagen: ['', Validators.required],
+      imagen: [''],
     })
   }
 
@@ -41,7 +41,7 @@ export class UpdatePlatoComponent implements OnInit {
                   nombre: this.plato.nombre,
                   ingredientes: this.plato.ingredientes,
                   precio: this.plato.precio,
-                  imagen: this.plato.imagen,
+                  imagen: this.plato?.imagen,
               });
           }
       },
@@ -60,10 +60,9 @@ export class UpdatePlatoComponent implements OnInit {
     if (this.platoForm.valid) {
       const platoId = this.route.snapshot.paramMap.get('id');
       if (platoId) {
-        // Agregar la imagen Base64 al formulario
         const updatedPlato = {
           ...this.platoForm.value,
-          imagen: this.imagenBase64, // Agregar imagen en formato Base64
+          imagen: this.imagenBase64 || null,
         };
   
         this.platoService.updatePlato(platoId, updatedPlato).subscribe({
@@ -89,11 +88,11 @@ export class UpdatePlatoComponent implements OnInit {
       const reader = new FileReader();
   
       reader.onload = () => {
-        this.imagenBase64 = reader.result as string; // Convertir a Base64
-        console.log('Imagen en Base64:', this.imagenBase64);
+        this.imagenBase64 = reader.result as string; 
+        //console.log('Imagen en Base64:', this.imagenBase64);
       };
   
-      reader.readAsDataURL(file); // Leer el archivo como Base64
+      reader.readAsDataURL(file); 
     }
   }
 

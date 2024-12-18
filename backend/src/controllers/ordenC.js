@@ -4,7 +4,7 @@ const getOrden = async (req, res) => {
     try {
         const { idMesa } = req.params;
 
-        const orden = await Orden.findOne(idMesa);
+        const orden = await Orden.findOne({ idMesa: idMesa });
 
         if (!orden) {
             return res.status(404).json({ message: "Orden no encontrada" });
@@ -12,7 +12,7 @@ const getOrden = async (req, res) => {
 
         console.log(orden);
 
-        res.json("Orden encontrada: ", orden);
+        res.json({ message: "Orden encontrada", orden: orden });
     } catch (error) {
         res.status(500).send(error.message);
     }
@@ -60,7 +60,7 @@ const deleteOrden = async (req, res) => {
         const ordenEliminada = await Orden.deleteOne({ _id: id });
         console.log(ordenEliminada);
 
-        res.send("Orden eliminada correctamente: ", ordenEliminada);
+        res.status(200).send({ message: "Orden eliminada correctamente", data: ordenEliminada });
     } catch (error) {
         res.status(500).send(error.message);
     }

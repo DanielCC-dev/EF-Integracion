@@ -28,14 +28,11 @@ export class OrdenService {
     return this.http.get<Orden>(`${this.apiUrl}/${id}`);
   }
 
-  // Método para obtener todas las mesas predefinidas
-  getMesas(): Observable<Mesa[]> {
-    return of(MESAS);
+  getOrdenes(): Observable<Orden> {
+    return this.http.get<Orden>(`${this.apiUrl}`);
   }
 
-  // Método para buscar una mesa por ID
-  getMesaById(id: string): Observable<Mesa | undefined> {
-    const mesa = MESAS.find(m => m.id === id);
-    return of(mesa);
+  getMesas(): Observable<Mesa[]> {
+    return of(MESAS);
   }
 }

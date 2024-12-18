@@ -3,7 +3,7 @@ const { getOrden, addOrden, updateOrden, deleteOrden } = require('../controllers
 
 const router = express.Router();
 
-router.get("/api/orden/:id", getOrden);
+router.get("/api/orden/:idMesa", getOrden);
 router.post("/api/orden", addOrden);
 router.put("/api/orden/:id", updateOrden);
 router.delete("/api/orden/:id", deleteOrden);

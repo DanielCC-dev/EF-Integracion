@@ -1,4 +1,4 @@
-<app-navbar />
+<app-navbar></app-navbar>
 <div id="content">
     <section class="container mt-5">
         <div class="d-flex flex-column align-items-center">
@@ -9,42 +9,53 @@
             <div class="col-12 col-md-10">
                 <div class="card-body text-light">
                     <form [formGroup]="addOrdenForm" (ngSubmit)="addOrden()">
-                        <div>
-                            <label for="idMesa">Mesa</label>
-                            <select id="idMesa" formControlName="idMesa" required>
-                                <option *ngFor="let mesa of mesasDisponibles" [value]="mesa.id">{{
-                                    mesa.nombre }} - Para {{mesa.capacidad}} personas</option>
+                        <!-- Mesa -->
+                        <div class="mb-3">
+                            <label for="idMesa" class="form-label">Mesa</label>
+                            <select id="idMesa" formControlName="idMesa" class="form-control" required>
+                                <option value="" disabled selected>Selecciona una mesa</option>
+                                <option *ngFor="let mesa of mesasDisponibles" [value]="mesa.id">{{ mesa.nombre }} - Para
+                                    {{ mesa.capacidad }} personas</option>
                             </select>
                         </div>
 
-                        <div formArrayName="platillos">
-                            <div *ngFor="let platillo of platillos.controls; let i = index" [formGroupName]="i">
-                                <label for="idPlatillo-{{ i }}">Platillo</label>
-                                <select id="idPlatillo-{{ i }}" formControlName="idPlatillo" required>
-                                    <option *ngFor="let plato of platillosDisponibles" [value]="plato._id">{{
-                                        plato.nombre }}</option>
-                                </select>
+                        <!-- Platillos -->
+                        <div formArrayName="platillos" class="col-8 mx-auto">
+                            <div *ngFor="let platillo of platillos.controls; let i = index" [formGroupName]="i"
+                                class="mb-4 mt-2">
+                                <div class="d-flex align-items-center mt-2">
+                                    <label for="idPlatillo-{{ i }}" class="form-label me-2">Platillo:</label>
+                                    <select id="idPlatillo-{{ i }}" formControlName="idPlatillo" class="form-control"
+                                        required>
+                                        <option value="" disabled selected>Selecciona un plato</option>
+                                        <option *ngFor="let plato of platillosDisponibles" [value]="plato._id">{{
+                                            plato.nombre }}</option>
+                                    </select>
+                                </div>
 
-
-                                <label for="cantidad-{{ i }}">Cantidad</label>
-                                <input id="cantidad-{{ i }}" formControlName="cantidad" type="number" min="1">
-                                <button type="button" (click)="removePlatillo(i)">Eliminar</button>
+                                <div class="d-flex align-items-center mt-2">
+                                    <label for="cantidad-{{ i }}" class="form-label me-2">Cantidad:</label>
+                                    <input id="cantidad-{{ i }}" formControlName="cantidad" type="number"
+                                        class="form-control" min="1">
+                                </div>
+                                <button type="button" class="btn btn-danger mt-2"
+                                    (click)="removePlatillo(i)">Eliminar</button>
                             </div>
                         </div>
+                        <button type="button" class="btn btn-primary mt-1 mb-3" (click)="addPlatillo()">Añadir
+                            Platillo</button>
 
-                        <button type="button" (click)="addPlatillo()">Añadir Platillo</button>
-
-                        <div>
-                            <label for="estado">Estado</label>
-                            <select id="estado" formControlName="estado">
-                                <option value="pendiente">Pendiente</option>
-                                <option value="entregado">Entregado</option>
-                                <option value="cancelado">Cancelado</option>
-                            </select>
+                        <!-- Botones -->
+                        <div class="d-flex justify-content-start mt-4">
+                            <button type="submit" class="btn btn-warning" [disabled]="addOrdenForm.invalid">Guardar
+                                Orden</button>
+                            <a class="btn btn-secondary ms-3" href="/ordenes">Cancelar</a>
                         </div>
 
-                        <button type="submit">Guardar Orden</button>
-                        <div *ngIf="errorMessage">{{ errorMessage }}</div>
+                        <!-- Mensajes de error -->
+                        <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+                            {{ errorMessage }}
+                        </div>
                     </form>
                 </div>
             </div>

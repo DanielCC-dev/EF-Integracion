@@ -3,10 +3,62 @@
     <section class="container mt-5">
         <div class="d-flex flex-column align-items-center">
             <h1 class="fw-bold text-light mb-4">Gestión de Órdenes</h1>
+
             <div class="col-12">
                 <h3 class="fw-semibold mb-3">Buscar Órden por mesa</h3>
-                <div class="table-container">
+                <div class="container">
+                    <!-- Campo de búsqueda por ID de mesa -->
+                    <div class="mb-3">
+                        <label for="idMesa" class="form-label">Mesa</label>
+                        <select id="idMesa" [(ngModel)]="mesaId" class="form-control text-dark" required>
+                            <option value="" disabled selected>Selecciona una mesa</option>
+                            <option *ngFor="let mesa of mesasDisponibles" [value]="mesa.id">{{ mesa.nombre }}</option>
+                        </select>
+                    </div>
+
+                    <button class="btn btn-primary mt-3" (click)="buscarOrden()" [disabled]="!mesaId">Buscar</button>
+
+                    <div *ngIf="errorMessage " class="alert alert-danger mt-2">
+                        {{ errorMessage }}
+                    </div>
+
+                    <div *ngIf="ordenEncontrada" class="mt-4 p-4 border rounded shadow-sm bg-dark">
+                        <h4 class="text-light">Detalles de la Orden</h4>
+                        <p><strong>ID de mesa:</strong> {{ ordenEncontrada.idMesa }}</p>
+                        <p><strong>Estado:</strong> {{ ordenEncontrada.estado }}</p>
+
+                        <div *ngIf="ordenEncontrada.platillos && ordenEncontrada.platillos.length">
+                            <p><strong>Platillos:</strong></p>
+                            <ul class="list-group list-group-flush text-dark">
+                                <li *ngFor="let platillo of ordenEncontrada.platillos" class="list-group-item">
+                                    Platillo ID: {{ platillo.idPlatillo }} - Cantidad: {{ platillo.cantidad }}
+                                    <button class="btn btn-info btn-sm ms-3"
+                                        (click)="mostrarInfoPlato(platillo.idPlatillo)">
+                                        Mostrar info del plato
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="d-flex justify-content-start mt-3">
+                            <button class="btn btn-danger" (click)="actualizarEstadoOrden('cancelado')">Cambiar a
+                                cancelado</button>
+                            <button class="btn btn-success ms-3" (click)="actualizarEstadoOrden('entregado')">Cambiar a
+                                entregado</button>
+                        </div>
+                        <br>
+                        <button class="btn btn-outline-danger mt-3" (click)="eliminarOrden()">Eliminar Orden</button>
+                    </div>
+
+                    <div *ngIf="platoSeleccionado" class="mt-4 p-3 border rounded shadow-sm bg-dark">
+                        <h5 class="text-light">Información del Plato</h5>
+                        <p><strong>Nombre:</strong> {{ platoSeleccionado.nombre }}</p>
+                        <p><strong>Descripción:</strong> {{ platoSeleccionado.ingredientes }}</p>
+                        <p><strong>Precio:</strong> {{ platoSeleccionado.precio }}</p>
+                        <button class="btn btn-secondary" (click)="platoSeleccionado = null">Cerrar</button>
+                    </div>
+
                 </div>
+
                 <a class="btn btn-lg btn-warning mt-4" href="/addOrden">Añadir</a>
             </div>
         </div>

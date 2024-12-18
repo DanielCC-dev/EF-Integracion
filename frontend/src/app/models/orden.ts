@@ -1,4 +1,5 @@
 export class Orden {
+    _id?: string = '';
     idMesa: string;
     platillos: { idPlatillo: string; cantidad: number }[];
     estado: "pendiente" | "entregado" | "cancelado";

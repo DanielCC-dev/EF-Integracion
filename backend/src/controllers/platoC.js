@@ -37,18 +37,17 @@ const addPlato = async (req, res) => {
 const updatePlato = async (req, res) => {
     try {
       const { id } = req.params;
-      // Aquí debes manejar FormData, ya que viene en req.body si usas middleware como multer o body-parser
       const { nombre, ingredientes, precio } = req.body;
-      let imagen = req.body.imagen; // Si imagen viene como parte del form data
-  
-      // Si estás enviando archivos, necesitarás un middleware para manejar archivos
+      
+      let imagen = req.body.imagen; 
+      
       if (req.file) {
-        imagen = req.file.path; // O como lo manejes para almacenar la imagen
+        imagen = req.file.path;
       }
   
       const platoActualizado = await Plato.findByIdAndUpdate(
         id,
-        { nombre, ingredientes, precio, imagen },
+        { nombre, ingredientes, precio, imagen: imagen || undefined },
         { new: true, runValidators: true }
       );
   
@@ -61,6 +60,7 @@ const updatePlato = async (req, res) => {
       res.status(500).send(error.message);
     }
   };
+  
 
 const deletePlato = async (req, res) => {
     try {

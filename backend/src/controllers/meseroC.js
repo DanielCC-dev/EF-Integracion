@@ -106,11 +106,39 @@ const login = async (req, res) => {
   }
 }
 
+const agregarMeseroPrueba = async () => {
+  try {
+    // Comprobar si ya existe el mesero con ese correo
+    const meseroExistente = await Mesero.findOne({ correo: 'example@gmail.com' });
+
+    if (!meseroExistente) {
+      // Si no existe, crea un nuevo mesero con los datos de prueba
+      const contraseñaHasheada = await bcrypt.hash('passwordExample123', 10); // Hash de la contraseña
+
+      const nuevoMesero = new Mesero({
+        nombre: 'userExample',
+        correo: 'example@gmail.com',
+        telefono: '987654321',
+        contraseña: contraseñaHasheada,
+        activo: true
+      });
+
+      await nuevoMesero.save();
+      console.log('Mesero de prueba agregado con éxito');
+    } else {
+      console.log('El mesero ya existe en la base de datos');
+    }
+  } catch (error) {
+    console.error('Error al agregar mesero:', error);
+  }
+};
+
 module.exports = {
   addMesero,
   getAllMeseros,
   updateMesero,
   deleteMesero,
   getMesero,
-  login
+  login,
+  agregarMeseroPrueba
 };

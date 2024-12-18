@@ -5,6 +5,7 @@ const ordenRoutes = require('./routes/orden.routes');
 const meseroRoutes = require('./routes/mesero.routes');
 const clienteRoutes = require('./routes/cliente.routes');
 const platoRoutes = require('./routes/plato.routes');
+const meseroC = require('./controllers/meseroC')
 const morgan = require('morgan');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -28,6 +29,7 @@ app.use(ordenRoutes);
 app.use(meseroRoutes);
 app.use(clienteRoutes);
 app.use(platoRoutes);
+meseroC.agregarMeseroPrueba();
 
 const PORT = process.env.PORT || 2500;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}, http://localhost:2500`));

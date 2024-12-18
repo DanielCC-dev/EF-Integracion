@@ -24,6 +24,9 @@ export class NavbarComponent {
     if (route === '/updateCliente' && this.router.url.includes('/updateCliente')) {
       return true;
     }
+    if (route === '/updatePlato' && this.router.url.includes('/updatePlato')) {
+      return true;
+    }
     if (route === '/updateCategoria' && this.router.url.includes('/updateCategoria')) {
       return true;
     }

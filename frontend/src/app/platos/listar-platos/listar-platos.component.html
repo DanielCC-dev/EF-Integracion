@@ -1,0 +1,47 @@
+<app-navbar></app-navbar>
+<div id="content">
+    <section class="container mt-5">
+        <div class="d-flex flex-column align-items-center">
+            <h1 class="fw-bold text-light mb-4">Gestión de Platos</h1>
+            <div class="col-12">
+                <h3 class="fw-semibold mb-3">Lista de Platos</h3>
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nombre</th>
+                                <th>Ingredientes</th>
+                                <th>Precio</th>
+                                <th>Imagen</th>
+                                <th class="text-center">Eliminar</th>
+                                <th class="text-center">Actualizar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let plato of platos; let i = index">
+                                <td>{{ i + 1 }}</td>
+                                <td class="text-uppercase">{{ plato.nombre }}</td>
+                                <td>{{ plato.ingredientes }}</td>
+                                <td>{{ plato.precio }}</td>
+                                <td>
+                                    <img *ngIf="plato.imagen" [src]="plato.imagen" alt="Imagen del plato" class="img-thumbnail" style="max-width: 100px;" />
+                                  </td>
+                                <td class="text-center">
+                                    <button (click)="eliminarPlato(plato._id)"
+                                        class="btn btn-danger">Eliminar</button>
+                                </td>
+                                <td class="text-center">
+                                    <button [routerLink]="['/updatePlato', plato._id]"
+                                        class="btn btn-primary">Actualizar</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <a class="btn btn-lg btn-warning mt-4" routerLink="/addPlato">Añadir</a>
+            </div>
+        </div>
+    </section>
+</div>
+<app-footer />

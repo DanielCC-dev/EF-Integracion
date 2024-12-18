@@ -3,10 +3,10 @@ const { getPlatos, addPlato, updatePlato, deletePlato, getPlato } = require('../
 
 const router = express.Router();
 
-router.get("/api/plato/:id", getPlatos);
-router.get("/api/plato", getPlato);
-router.post("/api/addPlato", addPlato);
-router.put("/api/updatePlato/:id", updatePlato);
-router.delete("/api/deletePlato/:id", deletePlato);
+router.get("/api/platos", getPlatos);
+router.get("/api/plato/:id", getPlato);
+router.post("/api/plato", addPlato);
+router.put("/api/plato/:id", updatePlato);
+router.delete("/api/plato/:id", deletePlato);
 
 module.exports = router;

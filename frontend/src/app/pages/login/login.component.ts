@@ -7,23 +7,23 @@ import { MeseroService } from '../../services/mesero.service';
 import { CookieService } from 'ngx-cookie-service';
 
 @Component({
-    selector: 'app-login',
-    imports: [NgIf, ReactiveFormsModule],
-    templateUrl: './login.component.html',
-    styleUrl: './login.component.css'
+  selector: 'app-login',
+  imports: [NgIf, ReactiveFormsModule],
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.css'
 })
 export class LoginComponent {
   loginForm: FormGroup;
   errorMessage: string = '';
 
-  constructor(private fb: FormBuilder, private router: Router, private datalogin: MeseroService, private cookieService: CookieService){
+  constructor(private fb: FormBuilder, private router: Router, private datalogin: MeseroService, private cookieService: CookieService) {
     this.loginForm = this.fb.group({
       correo: ['', Validators.required],
       contraseña: ['', Validators.required],
     })
   }
 
-  loginUser(){
+  loginUser() {
     const USER: Login = {
       correo: this.loginForm.get('correo')?.value,
       contraseña: this.loginForm.get('contraseña')?.value,
@@ -32,12 +32,18 @@ export class LoginComponent {
     this.datalogin.login(USER).subscribe({
       next: (response) => {
         const token = response.token;
+        const userName = response.userName;
 
-        // Guarda el token en una cookie
         this.cookieService.set('jwt_token', token, {
-          path: '/',        
-          secure: true,     
-          sameSite: 'Strict' 
+          path: '/',
+          secure: true,
+          sameSite: 'Strict'
+        });
+
+        this.cookieService.set('user_name', userName, {
+          path: '/',
+          secure: true,
+          sameSite: 'Strict',
         });
         this.router.navigate(['/home']);
       },

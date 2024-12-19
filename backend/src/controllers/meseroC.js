@@ -100,7 +100,7 @@ const login = async (req, res) => {
       expiresIn: 60 * 60 * 24
     })
 
-    res.json({ auth: true, token });
+    res.json({ auth: true, token, userName: user.nombre });
   } catch (error) {
     res.status(500).send(error.message);
   }
@@ -108,12 +108,10 @@ const login = async (req, res) => {
 
 const agregarMeseroPrueba = async () => {
   try {
-    // Comprobar si ya existe el mesero con ese correo
     const meseroExistente = await Mesero.findOne({ correo: 'example@gmail.com' });
 
     if (!meseroExistente) {
-      // Si no existe, crea un nuevo mesero con los datos de prueba
-      const contraseñaHasheada = await bcrypt.hash('passwordExample123', 10); // Hash de la contraseña
+      const contraseñaHasheada = await bcrypt.hash('passwordExample123', 10);
 
       const nuevoMesero = new Mesero({
         nombre: 'userExample',

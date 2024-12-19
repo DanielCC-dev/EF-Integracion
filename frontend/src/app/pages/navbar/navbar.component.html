@@ -6,25 +6,37 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link" [class.active]="isActive('/home')" href="/home">Home</a>
+        <a class="nav-link" [class.active]="isActive('/home')" href="/home">
+          <i class="bi bi-house-door"></i> Home
+        </a>
         <a class="nav-link" [class.active]="isActive('/meseros') || isActive('/addMesero') || isActive('/updateMesero')"
-          href="/meseros">Meseros</a>
+          href="/meseros">
+          <i class="bi bi-person-badge"></i> Meseros
+        </a>
         <a class="nav-link"
           [class.active]="isActive('/clientes') || isActive('/addCliente') || isActive('/updateCliente')"
-          href="/clientes">Clientes</a>
+          href="/clientes">
+          <i class="bi bi-person-lines-fill"></i> Clientes
+        </a>
         <a class="nav-link" [class.active]="isActive('/platos') || isActive('/addPlato') || isActive('/updatePlato')"
-          href="/platos">Platos</a>
-        <a class="nav-link"
-          [class.active]="isActive('/ordenes') || isActive('/addOrden')"
-          href="/ordenes">Órdenes</a>
+          href="/platos">
+          <i class="bi bi-egg-fried"></i> Platos
+        </a>
+        <a class="nav-link" [class.active]="isActive('/ordenes') || isActive('/addOrden')" href="/ordenes">
+          <i class="bi bi-cart-check"></i> Órdenes
+        </a>
         <a class="nav-link"
           [class.active]="isActive('/categorias') || isActive('/addCategoria') || isActive('/updateCategoria')"
-          href="/categorias">Categorías</a>
+          href="/categorias">
+          <i class="bi bi-tags-fill"></i> Categorías
+        </a>
+        <a class="nav-link" [class.active]="isActive('/atencion-al-cliente')" href="/atencion-al-cliente">
+          <i class="bi bi-chat-text-fill"></i> Atención al cliente
+        </a>
       </div>
       <button (click)="logout()" class="btn btn-warning ms-auto">Cerrar sesión</button>
     </div>
   </div>
 </nav>
-
 
 <router-outlet></router-outlet>

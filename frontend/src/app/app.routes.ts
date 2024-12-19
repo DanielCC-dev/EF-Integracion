@@ -17,6 +17,7 @@ import { ErrorComponent } from './pages/error/error.component';
 import { userGuardGuard } from './services/user-guard.guard';
 import { GestionOrdenesComponent } from './ordenes/gestion-ordenes/gestion-ordenes.component';
 import { AddOrdenComponent } from './ordenes/add-orden/add-orden.component';
+import { ChatComponent } from './pages/chat/chat.component';
 
 export const routes: Routes = [
     {path: '', component: LoginComponent},
@@ -35,5 +36,6 @@ export const routes: Routes = [
     {path: 'updateCategoria/:id', component: UpdateCategoriaComponent, canActivate: [userGuardGuard]},
     {path: 'ordenes', component: GestionOrdenesComponent, canActivate: [userGuardGuard]},
     {path: 'addOrden', component: AddOrdenComponent, canActivate: [userGuardGuard]},
+    {path: 'atencion-al-cliente', component: ChatComponent, canActivate: [userGuardGuard]},
     {path:'**', component: ErrorComponent}
 ];

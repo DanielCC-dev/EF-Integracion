@@ -13,7 +13,7 @@ export class NavbarComponent {
 
   logout() {
     this.cookieService.delete('jwt_token');
-    
+    this.cookieService.delete('user_name');
     this.router.navigate(['/']);
   }
 

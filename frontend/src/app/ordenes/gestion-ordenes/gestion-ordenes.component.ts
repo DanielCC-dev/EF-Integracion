@@ -8,6 +8,7 @@ import { OrdenService } from '../../services/orden.service';
 import { PlatoService } from '../../services/plato.service';
 import { NgFor, NgIf } from '@angular/common';
 import { Orden } from '../../models/orden';
+import { ChatComponent } from "../../pages/chat/chat.component";
 
 @Component({
   selector: 'app-gestion-ordenes',

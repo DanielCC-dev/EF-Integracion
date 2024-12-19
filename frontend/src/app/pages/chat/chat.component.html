@@ -1,0 +1,29 @@
+<app-navbar></app-navbar>
+<div id="content">
+    <section class="container mt-5 d-flex justify-content-center">
+        <div class="chat-window card shadow-lg">
+            <div class="card-header bg-light text-dark d-flex align-items-center justify-content-between">
+                <h5 class="mb-0">Atención al Cliente</h5>
+                <i class="bi bi-chat-dots"></i>
+            </div>
+            <div class="card-body chat-body"  #chatBody>
+                <div *ngFor="let msg of messages" [ngClass]="{'text-end': msg.isOwn, 'text-start': !msg.isOwn}">
+                    <div class="message-container">
+                        <small *ngIf="!msg.isOwn" class="user-name text-light">{{ msg.userName }}</small>
+                        <p class="message-box"
+                            [ngClass]="{'bg-primary text-white': msg.isOwn, 'bg-light text-dark': !msg.isOwn}">
+                            {{ msg.text }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-footer d-flex">
+                <input type="text" class="form-control me-2" [(ngModel)]="message"
+                    placeholder="Escribe un mensaje..." />
+                <button class="btn btn-warning" (click)="sendMessage()">Enviar</button>
+            </div>
+        </div>
+    </section>
+</div>
+<app-footer></app-footer>
